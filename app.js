@@ -1,10 +1,7 @@
-var http = require('http')
 var fs = require('fs')
-
-var  yonlendirici = new Object()
-
-
-var homeController = function (req,res) {
+var express = require('express')
+var app = express()
+app.get('/',function(req,res) {
 
     fs.readFile('index.html', function (err, data) {
 
@@ -13,31 +10,18 @@ var homeController = function (req,res) {
         console.log('HomeController');
 
     })
+})
 
-}
-
-var loginController = function(req,res) {
-
+app.get('/login',function(req,res) {
+    
     fs.readFile('login.html', function (err, data) {
 
         res.write(data)
-        res.end('Login sayfası ')
-        console.log('loginController');
+        res.end('Merhaba Ali Altinok')
+        console.log('LoginController');
 
     })
-}
-
-yonlendirici['/'] = homeController
-yonlendirici['/login'] = loginController
-
-var server = http.createServer(function (req, res) {
-
-   if(req.url in yonlendirici)
-   yonlendirici[req.url](req,res)
-
-    
-        
 })
 
-server.listen('8000') // 80 portunu internette kullandığım için 80 portunu kullanmadım
+app.listen(8000) // 80 portunu internette kullandığım için 80 portunu kullanmadım
 
