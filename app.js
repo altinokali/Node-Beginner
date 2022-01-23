@@ -9,7 +9,7 @@ var homeController = function (req,res) {
     fs.readFile('index.html', function (err, data) {
 
         res.write(data)
-        res.end('Mesaj Gönderildiiii')
+        res.end('Mesaj Basariyla Gönderildiiii')
         console.log('HomeController');
 
     })
